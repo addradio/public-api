@@ -7,7 +7,7 @@
 	
 	use Firebase\JWT\JWT;
 	
-	header( "Content-type: text/plain", true );
+	header( "Content-type: text/plain", TRUE );
 
 	$user = '<your username>';
 	$secret = '<your secret>';
@@ -70,7 +70,7 @@ function login( $user, $secret )
 	$context = stream_context_create( $opts );
 	
 	// Retrieve a challenge from the API to validate our credentials
-	if( $jwt = @file_get_contents( 'https://api.addradio.de/api/login?name=' . $user, false, $context ))
+	if( $jwt = @file_get_contents( 'https://api.addradio.de/api/login?name=' . $user, FALSE, $context ))
 	{
 		$jwt = JWT::decode( $jwt, $secret, ['HS256'] );
 	   
@@ -84,7 +84,7 @@ function login( $user, $secret )
 		$context = stream_context_create( $opts );
 		
 		// This function returns the JWT immediately, so no need to extract it from the headers
-		$jwt = @file_get_contents( 'https://api.addradio.de/api/auth', false, $context );
+		$jwt = @file_get_contents( 'https://api.addradio.de/api/auth', FALSE, $context );
 		
 		// We now have a server-signed token to work with
 		return $jwt;
@@ -128,7 +128,7 @@ function updateJWT( &$jwt, $headers )
 	{
 		// Search response headers for updated JWT.
 		foreach( $headers as $header ) {
-			$match = null;
+			$match = NULL;
 			if( preg_match( '/Authorization: Bearer ([^,]+).*$/', $header, $match ) && isset( $match[1] )) {
 				 $new_jwt = $match[1];
 				 break;
@@ -147,7 +147,7 @@ function readJson( $url, &$jwt=FALSE )
 	if( stripos( $url, 'http://' ) === 0 || stripos( $url, 'https://' ) === 0 )
 	{
 		// Is it a valid URL in any other regard?
-		if( filter_var( $url, FILTER_VALIDATE_URL ) !== FALSE)
+		if( filter_var( $url, FILTER_VALIDATE_URL ) !== FALSE )
 		{
 			$json = FALSE;
 			$headers = '';
