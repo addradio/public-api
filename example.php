@@ -75,7 +75,7 @@ function login( $user, $secret )
 		$jwt = JWT::decode( $jwt, $secret, ['HS256'] );
 	   
 		// Just copy the challenge into the response. The API only wants
-		// to know if we can encrypt his challenge using the right secret
+		// to know if we can encrypt its challenge using the right secret
 		$jwt->response = $jwt->challenge;
 	   
 		// Construct a new authentication header
