@@ -1,4 +1,4 @@
-# Using the addRadio API
+# Using the AddRadio.API
 
 ## General information
 
